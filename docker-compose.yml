@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  web:
+    build: ~/app
+    command: python3 dockerproje.py run -h 0.0.0.0
+    volumes:
+      - ~/app/:/usr/src/app/
+    ports:
+      - 5001:5000
+
