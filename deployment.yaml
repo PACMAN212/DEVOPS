@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: appy-deployment
+    namespace: default
+    labels:
+        app: appy
+spec:
+    replicas: 3
+    selector:
+        matchLabels:
+            app: appy
+    template:
+        metadata:
+            labels:
+                app: appy
+        spec:
+            containers:
+                - name: appy
+                  image: pacman212/appy:v1
+                  ports:
+                      - containerPort: 5000
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: appy-service
+    namespace: default
+spec:
+    selector:
+        app: appy
+    ports:
+        - protocol: TCP
+          port: 80
+          targetPort: 5000
+    type: LoadBalancer
