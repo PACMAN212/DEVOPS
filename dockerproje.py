@@ -1,12 +1,13 @@
 from flask import Flask, jsonify, request, abort
 import requests
+
 urlhaus_url = "https://urlhaus-api.abuse.ch/v1/urls/recent/"
 
 app = Flask(__name__)
 
 @app.route("/")
 def home():
-    abort(404)
+    return "Ana sayfa. Hoş geldiniz! Gitmek istediğiniz veriye /malware/(sayı) yazarak gidebilirsiniz. Girilen sayı son açıklanan zararlı malware dosyalarının içeriğini göstermektedir."
 
 @app.route("/query")
 def query():
@@ -20,7 +21,7 @@ def query():
         else:
             return jsonify({"error": response.text})
     else:
-        return jsonify({"message": "Invalid query parameter. Please use one of the following: url, host, payload, tag."})
+        return jsonify({"message": "Geçersiz sorgu parametresi. Lütfen şunlardan birini kullanın: url, host, payload, tag."})
 
 @app.route("/malware/<int:n>")
 def number(n):
@@ -34,7 +35,11 @@ def number(n):
         else:
             return jsonify({"error": response.text})
     else:
-        return jsonify({"message": "Invalid number parameter. Please use a positive integer."})
+        return jsonify({"message": "Geçersiz sayı parametresi. Lütfen pozitif bir tamsayı kullanın."})
+
+@app.route("/hoşgeldiniz")
+def welcome():
+    return "HOŞGELDİNİZ! Gitmek istediğiniz veriye /malware/(sayı) yazarak gidebilirsiniz. Girilen sayı son açıklanan zararlı malware dosyalarının içeriğini göstermektedir."
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port = 5000)
+    app.run(host='0.0.0.0', port=5000)
