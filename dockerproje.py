@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "Ana sayfa. Hoş geldiniz! Gitmek istediğiniz veriye /malware/(sayı) yazarak gidebilirsiniz. Girilen sayı son açıklanan zararlı malware dosyalarının içeriğini göstermektedir."
+    return "Ana yaprak. Hoş geldiniz! Gitmek istediğiniz veriye /malware/(sayı) yazarak gidebilirsiniz. Girilen sayı son açıklanan zararlı malware dosyalarının içeriğini göstermektedir."
 
 @app.route("/query")
 def query():
