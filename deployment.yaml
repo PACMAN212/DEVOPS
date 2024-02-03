@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-    name: appy-deployment
+    name: appppy-deployment
     namespace: default
     labels:
-        app: appy
+        app: appppy
 spec:
     replicas: 3
     selector:
         matchLabels:
-            app: appy
+            app: appppy
     template:
         metadata:
             labels:
-                app: appy
+                app: appppy
         spec:
             containers:
-                - name: appy
+                - name: appppy
                   image: pacman212/appy:v1
                   ports:
                       - containerPort: 5000
@@ -25,11 +25,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    name: appy-service
+    name: appppy-service
     namespace: default
 spec:
     selector:
-        app: appy
+        app: appppy
     ports:
         - protocol: TCP
           port: 80
